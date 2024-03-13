@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start:dev": "nodemon src/server.js"
+    "start": "nodemon src/server.js",
+    "importData": "node ./dev-data/import.js --import",
+    "deleteData": "node ./dev-data/import.js --delete"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,6 @@
     "express": "^4.18.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
-    "nodemon": "^3.1.0",
-    "validator": "^13.11.0"
+    "nodemon": "^3.1.0"
   }
 }

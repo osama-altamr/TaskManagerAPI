@@ -1,5 +1,6 @@
 const express = require("express");
 const { protect } = require("../middlewares/protectMiddleware");
+const { validateObjectId } = require("../middlewares/validateIdMiddleware");
 const taskController = require("../controllers/taskController");
 const router = express.Router();
 
@@ -12,8 +13,8 @@ router
 
 router
   .route("/:id")
-  .get(taskController.getTask)
-  .put(taskController.updateTask)
-  .delete(taskController.deleteTask);
+  .get(validateObjectId, taskController.getTask)
+  .put(validateObjectId, taskController.updateTask)
+  .delete(validateObjectId, taskController.deleteTask);
 
 module.exports = router;

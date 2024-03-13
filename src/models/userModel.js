@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const bcrypt = require("bcryptjs");
 
-const validator = require("validator");
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -10,6 +9,8 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
       unique: true,
+      minlength: 3,
+
       validate: {
         validator: function (value) {
           return /^[a-zA-Z0-9_]+$/.test(value);
@@ -19,10 +20,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      validate(val) {
-        if (validator.isStrongPassword(val)) {
-        }
-      },
+      minlength: 8,
     },
   },
   {

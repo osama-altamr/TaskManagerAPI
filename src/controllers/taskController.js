@@ -2,17 +2,16 @@ const Task = require("../models/taskModel");
 
 exports.getAllTasks = async (req, res, next) => {
   try {
-    console.log("requesting tasks", req.user);
     const tasks = await Task.find({ user: req.user._id });
-    res.status(200).send({
+    res.status(200).json({
       status: "success",
       results: tasks.length,
       tasks,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       status: "error",
-      message: "Something went very wrong",
+      message: "An unexpected error occurred. Please try again later.",
     });
   }
 };
@@ -20,11 +19,6 @@ exports.getAllTasks = async (req, res, next) => {
 exports.createTask = async (req, res, next) => {
   try {
     const { title, description, completed } = req.body;
-    if (!title || !description) {
-      return res.status(400).send({
-        message: "Both title and description are required.",
-      });
-    }
     const task = await Task.create({
       title,
       description,
@@ -36,9 +30,14 @@ exports.createTask = async (req, res, next) => {
       task,
     });
   } catch (err) {
-    return res.status(500).send({
+    if (err.name === "ValidationError") {
+      const errors = Object.values(err.errors).map((el) => el.message);
+      const message = `Invalid input data ${errors.join(", ")}`;
+      return res.status(400).json(message);
+    }
+    return res.status(500).json({
       status: "error",
-      message: "Something went very wrong",
+      message: "An unexpected error occurred. Please try again later.",
     });
   }
 };
@@ -47,7 +46,9 @@ exports.getTask = async (req, res, next) => {
   try {
     const _id = req.params.id;
     const user = req.user._id;
-    const task = await Task.findOne({ _id, user }).populate("user", "username");
+
+    const task = await Task.findOne({ _id, user });
+    // .populate("user", "username")
     if (!task) {
       return res.status(404).json({
         message: "No Task found with that ID",
@@ -59,9 +60,9 @@ exports.getTask = async (req, res, next) => {
       task,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       status: "error",
-      message: "Something went very wrong",
+      message: "An unexpected error occurred. Please try again later.",
     });
   }
 };
@@ -69,8 +70,9 @@ exports.getTask = async (req, res, next) => {
 exports.updateTask = async (req, res, next) => {
   try {
     const _id = req.params.id;
+
     const updates = Object.keys(req.body);
-    const allowedUpdates = ["completed", "description"];
+    const allowedUpdates = ["completed", "description", "title"];
     const isValidOperation = updates.every((update) =>
       allowedUpdates.includes(update)
     );
@@ -91,17 +93,18 @@ exports.updateTask = async (req, res, next) => {
       task,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       status: "error",
-      message: "Something went very wrong",
+      message: "An unexpected error occurred. Please try again later.",
     });
   }
 };
 
 exports.deleteTask = async (req, res, next) => {
   try {
+    cons_id = req.params.id;
     const task = await Task.findOneAndDelete({
-      _id: req.params.id,
+      _id,
       user: req.user._id,
     });
     if (!task) {
@@ -110,12 +113,13 @@ exports.deleteTask = async (req, res, next) => {
       });
     }
     res.status(200).json({
+      status: "success",
       deleted: true,
     });
   } catch (err) {
-    return res.status(500).send({
+    return res.status(500).json({
       status: "error",
-      message: "Something went very wrong",
+      message: "An unexpected error occurred. Please try again later.",
     });
   }
 };

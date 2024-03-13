@@ -16,7 +16,7 @@ exports.protect = async (req, res, next) => {
         message: "You are not logged in ! Please log in to get access ",
       });
     }
-
+    
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
     const currentUser = await User.findById(decoded.id);

@@ -1,0 +1,27 @@
+[
+  {
+    "_id": "60d5ecb8b392d234567890ab",
+    "username": "john_doe",
+    "password": "P@ssw0rd123"
+  },
+  {
+    "_id": "60d5ecb8b392d234567890cd",
+    "username": "alice_smith",
+    "password": "SecurePass789"
+  },
+  {
+    "_id": "60d5ecb8b392d234567890ef",
+    "username": "sam_jones",
+    "password": "Str0ngP@ss"
+  },
+  {
+    "_id": "65f1278f59ad3a96ed864fa0",
+    "username": "emily_brown",
+    "password": "P@55w0rd!"
+  },
+  {
+    "_id": "65f12753d961f443cbe1ea8e",
+    "username": "alex_wilson",
+    "password": "S3cureP@ssw0rd"
+  }
+]

@@ -5,19 +5,22 @@ exports.register = async (req, res, next) => {
   try {
     const { username, password } = req.body;
     const user = await User.create({ username, password });
-    res.status(201).send({ user });
+    res.status(201).json({ user });
   } catch (err) {
     if (err.code === 11000) {
-      return res.status(400).send({
+      return res.status(400).json({
         message: `Duplicate key error. Please choose a different ${err.keyValue.name} .`,
       });
     }
     if (err.name === "ValidationError") {
       const errors = Object.values(err.errors).map((el) => el.message);
       const message = `Invalid input data ${errors.join(", ")}`;
-      return res.status(400).send(message);
+      return res.status(400).json({ message });
     }
-    res.status(500).send({ message: "Internal server error." });
+    res.status(500).json({
+      status: "error",
+      message: "An unexpected error occurred. Please try again later.",
+    });
   }
 };
 
@@ -27,7 +30,7 @@ exports.login = async (req, res, next) => {
     if (!username || !password) {
       return res
         .status(400)
-        .send({ message: "Please provide username and password" });
+        .json({ message: "Please provide username and password" });
     }
     const user = await User.findOne({
       username,
@@ -36,7 +39,7 @@ exports.login = async (req, res, next) => {
     if (!user || !(await user.correctPassword(password, user.password))) {
       return res
         .status(401)
-        .send({ message: "Incorrect username or passowrd" });
+        .json({ message: "Incorrect username or passowrd" });
     }
     const token = signToken(user._id);
     return res.status(200).json({
@@ -44,7 +47,12 @@ exports.login = async (req, res, next) => {
       token,
       user,
     });
-  } catch (err) {}
+  } catch (err) {
+    return res.status(500).json({
+      status: "error",
+      message: "An unexpected error occurred. Please try again later.",
+    });
+  }
 };
 
 const signToken = (id) => {

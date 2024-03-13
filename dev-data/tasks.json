@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "65f1b62897ab5e1b88426ede",
+    "title": "Buy groceries",
+    "description": "Purchase items for the weekly meals.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ab"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426edf",
+    "title": "Finish project report",
+    "description": "Complete the final report for the client.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890cd"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee0",
+    "title": "Book doctor's appointment",
+    "description": "Schedule a check-up for the annual physical.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ab"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee1",
+    "title": "Learn new programming language",
+    "description": "Start learning Python to enhance coding skills.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ef"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee4",
+    "title": "Organize office supplies",
+    "description": "Clean up and organize the office supplies.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890cd"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee5",
+    "title": "Plan vacation",
+    "description": "Book flights and hotels for the summer vacation.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ab"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee6",
+    "title": "Update resume",
+    "description": "Revise and update the resume for job applications.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ef"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee7",
+    "title": "Prepare for interview",
+    "description": "Study for the upcoming job interview.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890cd"
+  },
+  {
+    "_id": "65f1b62897ab5e1b88426ee2",
+    "title": "Clean the house",
+    "description": "Deep clean the house to prepare for guests.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ab"
+  },
+  {
+    "_id":"65f1b62897ab5e1b88426ee3",
+    "title": "Start a new project",
+    "description": "Begin working on a new software development project.",
+    "completed": false,
+    "user": "60d5ecb8b392d234567890ef"
+  }
+]
