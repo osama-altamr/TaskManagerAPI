@@ -10,12 +10,6 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true,
       minlength: 3,
-
-      validate: {
-        validator: function (value) {
-          return /^[a-zA-Z0-9_]+$/.test(value);
-        },
-      },
     },
     password: {
       type: String,
