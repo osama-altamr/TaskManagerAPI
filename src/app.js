@@ -4,7 +4,6 @@ const taskRouter = require("./routes/taskRoutes");
 const userRouter = require("./routes/userRoutes");
 const globalErrorHandler = require('./controllers/errorController');
 
-
 const app = express();
 
 app.use(express.json({ limit: "10kb" }));

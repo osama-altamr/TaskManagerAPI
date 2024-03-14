@@ -74,7 +74,7 @@ exports.deleteTask = catchAsync(async (req, res, next) => {
     _id,
     user: req.user._id,
   });
-
+  
   if (!task) {
     return next(new AppError("No Task found with that ID", 404));
   }

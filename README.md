@@ -76,7 +76,6 @@ Follow these steps to clone, set up, and run this project on your local machine.
    JWT_EXPIRES_IN=The duration after which the JWT expires.
 
 ### Step 5: Start the Server
-
 Run the following command to start the server: `npm start`
 
 ### Step 6: Verify the Application is Running
